@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUICEBOX | Real-Time NLP Jargon Classifier</title>
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- Premium Retro-Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Top Editorial Header -->
+    <header class="main-header">
+      <div class="header-logo">
+        <h1 class="logo-title">JUICEBOX</h1>
+        <span class="logo-tagline">PROJECT PAPAYA // COMP-ID: PRJ-PAPAYA-2026</span>
+      </div>
+      <div class="system-status">
+        <span class="status-indicator-light" id="status-light"></span>
+        <span class="status-text" id="status-text">Daemon Initializing...</span>
+      </div>
+    </header>
+
+    <!-- Content Workspace -->
+    <main class="workspace-grid">
+      
+      <!-- Left Pod (45% Width): Input & Local NLP Scoring -->
+      <section class="pod left-pod" id="input-pod-frame">
+        <h2 class="pod-title">1. Jargon Intercept</h2>
+        
+        <div class="input-group">
+          <label for="company-input" class="field-label">Target Company</label>
+          <input type="text" id="company-input" placeholder="e.g. Papaya Corp" class="text-input" value="JuiceBox Inc">
+        </div>
+        
+        <div class="input-group text-area-group">
+          <label for="cover-letter-input" class="field-label">Cover Letter Draft</label>
+          <div class="clipboard-toast" id="clipboard-toast">Captured from system clipboard!</div>
+          <textarea id="cover-letter-input" class="custom-textarea" placeholder="Paste or copy a cover letter here. If your clipboard contains 'hiring manager', 'apply for the position', 'resume enclosed', or 'to whom it may concern', Papaya will intercept it automatically!">To whom it may concern, I am a highly motivated results-oriented leader. I have a proven track record of deep dive engineering metrics.</textarea>
+        </div>
+
+        <div class="metrics-row">
+          <!-- Circular Progress Meter -->
+          <div class="metric-meter-container">
+            <svg class="progress-ring" width="100" height="100">
+              <circle class="progress-ring__circle-bg" stroke-width="8" fill="transparent" r="42" cx="50" cy="50"/>
+              <circle class="progress-ring__circle" id="progress-circle" stroke-width="8" fill="transparent" r="42" cx="50" cy="50"/>
+            </svg>
+            <div class="metric-value-overlay">
+              <span id="metric-score">0%</span>
+            </div>
+          </div>
+          
+          <div class="metric-description">
+            <h3 class="metric-title">Corporate Robot Score</h3>
+            <p class="metric-subtitle" id="metric-explanation">Formula: (Jargon Tokens / Total Words) * 100</p>
+            <span class="metric-badge" id="robot-badge">SAFE</span>
+          </div>
+        </div>
+
+        <button id="rewrite-btn" class="primary-btn">
+          <span>REWRITE COVER LETTER</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </section>
+
+      <!-- Right Pod (55% Width): Generative Clean Rewrite & Flags -->
+      <section class="pod right-pod">
+        <h2 class="pod-title">2. Narrative-Driven Rewrite</h2>
+        
+        <div class="output-card" id="output-container">
+          <div class="empty-output-state" id="empty-state">
+            <p class="placeholder-text">Awaiting intercept or manual trigger...</p>
+            <span class="catalog-decor">🌿 Papaya Catalog // Issue #01</span>
+          </div>
+          
+          <div class="filled-output-state hidden" id="filled-state">
+            <div class="rewrite-content" id="rewrite-output"></div>
+            
+            <hr class="output-divider">
+            
+            <div class="cliches-section">
+              <h4 class="cliche-header">Flagged Corporate Buzzwords</h4>
+              <div class="cliche-tags-container" id="cliche-tags">
+                <!-- Dynamic Pill tags will go here -->
+              </div>
+              <div class="cliche-reason-box hidden" id="cliche-reason-box">
+                <strong id="selected-phrase-title"></strong>: <span id="selected-phrase-reason"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- SQLite Database Log History Panel -->
+    <section class="history-panel">
+      <header class="history-header">
+        <div class="history-title-area">
+          <h2 class="history-title">3. Local Archive Logs</h2>
+          <span class="history-subtitle">Persistent SQLite Store</span>
+        </div>
+        <div class="history-stats">
+          <span class="stat-pill"><span id="history-count">0</span> entries archived</span>
+        </div>
+      </header>
+      
+      <div class="history-table-container">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Company</th>
+              <th>Robot Score</th>
+              <th>Clichés Flagged</th>
+              <th class="actions-col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody">
+            <!-- Dynamic rows from SQLite -->
+            <tr>
+              <td colspan="5" class="empty-table-msg">No logs currently archived. Try rewriting a cover letter to persist it!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+    <!-- Editorial Catalog Footer -->
+    <footer class="main-footer">
+      <p>© 2026 Project Papaya. Built for modern professionals seeking authentic career narratives.</p>
+      <p class="footer-decor">PAGE 08 // CATALOG NO. 26</p>
+    </footer>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
