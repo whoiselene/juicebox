@@ -16,6 +16,8 @@
 | 🥤 **Vibe** | Squeeze the fluff out, keep the juice |
 
 ---
+<img width="1108" height="756" alt="Screenshot 2026-07-05 at 18 33 55" src="https://github.com/user-attachments/assets/afb2291f-307e-4e55-a47b-aa07395c7f2d" />
+
 
 ## 🥊 1. The Core Concept
 
