@@ -6,8 +6,6 @@
 
 ---
 
-## 🌟 TL;DR
-
 | | |
 |---|---|
 | 🎯 **What it does** | Detects and removes hollow corporate jargon from cover letters, replacing it with real, numbers-driven achievements |
